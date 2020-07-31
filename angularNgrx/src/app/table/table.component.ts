@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  public users = [];
+
+  constructor(public usrService: UserService) { }
 
   ngOnInit(): void {
+    this.usrService.fetchUsers()
+    .subscribe(data =>{
+      this.users = data;
+      console.log('Users',this.users);
+    });
   }
 
 }

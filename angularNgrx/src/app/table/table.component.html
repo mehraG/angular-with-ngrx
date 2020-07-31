@@ -1,1 +1,29 @@
-<p>table works!</p>
+<div class="container-fluid">
+  <h2 class="pt-2">View User</h2>
+  <div class="table-responsive col-lg-7">
+    <table class="table table-sm table-hover table-striped table-dark table-bordered">
+
+      <caption id='tableCaption'>{{users.length}} entries found.</caption>
+
+      <thead class="thead-light">
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone No.</th>
+        </tr>
+      </thead>
+
+      <tbody id="tableData">
+        <tr *ngFor='let user of users;let i = index'>
+          <td>{{i + 1}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

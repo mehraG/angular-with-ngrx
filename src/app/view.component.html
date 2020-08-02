@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <h2 class="pt-2">View User</h2>
+  <div class="table-responsive col-lg-7">
+    <table class="table table-sm table-hover table-striped table-dark table-bordered">
+
+      <!-- <caption id='tableCaption'>{{users.length}} entries found.</caption> -->
+
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone No.</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody id="tableData">
+        <tr *ngFor='let i=index; let user of users$ | async'>
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+          <td>
+            <button (click)='delUser(user.id)' class="btn btn-outline-secondary">
+              <i class="fa fa-trash fa-lg" style="color:red"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

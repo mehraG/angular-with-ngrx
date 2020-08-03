@@ -6,7 +6,7 @@
 
       <thead class="thead-light">
         <tr>
-          <th>ID</th>
+          <th>S.No</th>
           <th>Name</th>
           <th>Email</th>
           <th>Phone No.</th>
@@ -16,7 +16,7 @@
 
       <tbody id="tableData" *ngIf="(userList$ | async); else noItems">
         <tr *ngFor='let i=index; let user of userList$ | async'>
-          <td>{{user.id}}</td>
+          <td>{{i+1}}</td>
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
           <td>{{user.phone}}</td>

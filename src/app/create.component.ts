@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { v4 as uuid } from 'uuid';
 
 import { AppState } from './store/app.state';
 import { IUser } from './store/user.model';
@@ -21,12 +21,13 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {}
 
   addUser() {
-    if (this.newUser.id === '' ||
+    if (
       this.newUser.name === '' ||
       this.newUser.email === '' ||
       this.newUser.phone=== ''
     ) { alert("Please Fill all Entries"); console.log('not saved'); }
     else {
+      this.newUser.id = uuid();
       this.store.dispatch(new UserActions.AddUser(this.newUser));
       this.newUser = { id: '', name: '', email: '', phone: '' }; // to reset form
     }

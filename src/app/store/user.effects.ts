@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 
 import * as UserActions from './user.actions'
 import { of } from 'rxjs';
@@ -31,6 +31,7 @@ export class UserEffects {
       mergeMap(
         (data) => this.usrSrvc.addUserSrvc(data.payload)
           .pipe(
+            tap(el=>console.log('data from server',el)),
             map(() => new UserActions.AddUserSuccess(data.payload)),
             catchError(error => of(new UserActions.AddUserFailure(error)))
           )

@@ -13,14 +13,18 @@ import * as UserActions from './store/user.actions';
   ]
 })
 export class ViewComponent implements OnInit {
+  userList$: Observable<IUser[]>;
+  loading$: Observable<Boolean>;
+  error$: Observable<Error>
 
-  users$: Observable<IUser[]>;
-
-  constructor(private store: Store<AppState>) {
-  }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.users$ = this.store.select('user');
+    this.userList$ = this.store.select(store => store.user.userList);
+    this.loading$ = this.store.select(store => store.user.loading);
+    this.error$ = this.store.select(store => store.user.error);
+
+    this.store.dispatch(new UserActions.FetchUser());
   }
 
   delUser(id: string) {

@@ -1,9 +1,8 @@
 <div class="container-fluid">
   <h2 class="pt-2">View User</h2>
-  <div class="table-responsive col-lg-7">
-    <table class="table table-sm table-hover table-striped table-dark table-bordered">
+  <div class="table-responsive col-lg-7" *ngIf="!(error$ | async); else error">
 
-      <!-- <caption id='tableCaption'>{{users.length}} entries found.</caption> -->
+    <table class="table table-sm table-hover table-striped table-dark table-bordered">
 
       <thead class="thead-light">
         <tr>
@@ -15,8 +14,8 @@
         </tr>
       </thead>
 
-      <tbody id="tableData">
-        <tr *ngFor='let i=index; let user of users$ | async'>
+      <tbody id="tableData" *ngIf="(userList$ | async); else noItems">
+        <tr *ngFor='let i=index; let user of userList$ | async'>
           <td>{{user.id}}</td>
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
@@ -28,8 +27,15 @@
           </td>
         </tr>
       </tbody>
+      <ng-template #noItems>
+        <tr>Error! No items found.</tr>
+      </ng-template>
 
     </table>
   </div>
+
+  <ng-template #error>
+    <h2>{{(error$ | async)?.message}}</h2>
+  </ng-template>
 
 </div>

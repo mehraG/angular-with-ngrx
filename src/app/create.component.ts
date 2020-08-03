@@ -14,18 +14,22 @@ import * as UserActions from './store/user.actions';
 })
 export class CreateComponent implements OnInit {
 
-  users$: Observable<IUser[]>;
   newUser: IUser = { id: '', name: '', email: '', phone: '' };
 
   constructor(private store: Store<AppState>) { }
-  
-  ngOnInit(): void {
-    this.users$ = this.store.select('user');
-  }
+
+  ngOnInit(): void {}
 
   addUser() {
-    this.store.dispatch(new UserActions.AddUser(this.newUser));
-    this.newUser = { id: '', name: '', email: '', phone: '' }; // to reset form
+    if (this.newUser.id === '' ||
+      this.newUser.name === '' ||
+      this.newUser.email === '' ||
+      this.newUser.phone=== ''
+    ) { alert("Please Fill all Entries"); console.log('not saved'); }
+    else {
+      this.store.dispatch(new UserActions.AddUser(this.newUser));
+      this.newUser = { id: '', name: '', email: '', phone: '' }; // to reset form
+    }
   }
 
 

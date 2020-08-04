@@ -14,6 +14,7 @@ import { ViewComponent } from './view.component';
 import { environment } from '../environments/environment';
 import {UserEffects} from './store/user.effects';
 import { UpdateModalComponent } from './modals/update-modal.component';
+import { ViewModalComponent } from './modals/view-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,11 @@ import { UpdateModalComponent } from './modals/update-modal.component';
     CreateComponent,
     ViewComponent,
     UpdateModalComponent,
+    ViewModalComponent,
   ],
   entryComponents:[
-    UpdateModalComponent
+    UpdateModalComponent,
+    ViewModalComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { IUser } from './store/user.model';
 import { AppState } from './store/app.state';
 import * as UserActions from './store/user.actions';
 import { UpdateModalComponent } from './modals/update-modal.component';
+import { ViewModalComponent } from './modals/view-modal.component';
 
 @Component({
   selector: 'app-view',
@@ -19,7 +20,7 @@ export class ViewComponent implements OnInit {
   loading$: Observable<Boolean>;
   error$: Observable<Error>;
 
-  constructor(private store: Store<AppState>,private modalService: NgbModal) { }
+  constructor(private store: Store<AppState>, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.userList$ = this.store.select(store => store.user.userList);
@@ -33,7 +34,7 @@ export class ViewComponent implements OnInit {
     this.store.dispatch(new UserActions.RemoveUser(id));
   }
 
-  openModal(user:IUser) {
+  openEditModal(user: IUser) {
     const modalRef = this.modalService.open(UpdateModalComponent);
 
     let data = user;
@@ -43,6 +44,15 @@ export class ViewComponent implements OnInit {
       (result) => { result == 'Data Updated!' ? console.log(result) : null; },
       (reason) => { }
     );
+  }
+
+  openViewModal(user: IUser) {
+    const modalRef = this.modalService.open(ViewModalComponent);
+
+    let data = user;
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(result => console.log(result));
   }
 
 }

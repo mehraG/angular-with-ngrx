@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <h2 class="pt-2">Add User</h2>
+
+  <form (ngSubmit)='addUser()'>
+    <div class="form-row">
+      
+      <div class="col-sm-3 col-md-2">
+        <input type="text" [(ngModel)]='newUser.name' class="form-control" placeholder="Name" name="name">
+      </div>
+      
+      <div class="col-sm-3 col-md-3">
+        <input type="text" [(ngModel)]='newUser.email' class="form-control" placeholder="Email" name="email">
+      </div>
+      
+      <div class="col-sm-3 col-md-2">
+        <input type="text" [(ngModel)]='newUser.phone' class="form-control" placeholder="Phone No." name="phone">
+      </div>
+
+      <div class="col-sm-1 col-md-1">
+        <button type="submit" class=" btn btn-primary">Submit</button>
+      </div>
+    
+    </div>
+  </form>
+
+</div>

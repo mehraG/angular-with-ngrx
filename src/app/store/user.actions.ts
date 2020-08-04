@@ -10,6 +10,9 @@ export const ADD_USER_FAILURE = '[USER] Add User Failure';
 export const REMOVE_USER = '[USER] Remove User';
 export const REMOVE_USER_SUCCESS = '[USER] Remove User Success';
 export const REMOVE_USER_FAILURE = '[USER] Remove User Failure';
+export const UPDATE_USER = '[USER] Update User';
+export const UPDATE_USER_SUCCESS = '[USER] Update User Success';
+export const UPDATE_USER_FAILURE = '[USER] Update User Failure';
 
 export class FetchUser implements Action {
   readonly type = FETCH_USER;
@@ -49,6 +52,20 @@ export class RemoveUserFailure implements Action {
   constructor(public payload: Error) { }
 }
 
+export class UpdateUser implements Action {
+  readonly type = UPDATE_USER;
+  constructor(public payload: IUser) { }
+}
+export class UpdateUserSuccess implements Action {
+  readonly type = UPDATE_USER_SUCCESS;
+  constructor(public payload: IUser) { }
+}
+export class UpdateUserFailure implements Action {
+  readonly type = UPDATE_USER_FAILURE;
+  constructor(public payload: Error) { }
+}
+
 export type Actions = FetchUser | FetchUserSuccess | FetchUserFailure |
   AddUser | AddUserSuccess | AddUserFailure |
-  RemoveUser | RemoveUserSuccess | RemoveUserFailure;
+  RemoveUser | RemoveUserSuccess | RemoveUserFailure |
+  UpdateUser | UpdateUserSuccess | UpdateUserFailure;

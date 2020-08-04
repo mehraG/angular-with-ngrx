@@ -13,16 +13,20 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  fetchUserSrvc(): Observable<IUser[]>{
-    return this.http.get<IUser[]>(this.url+this.userLimit);
+  fetchUserSrvc(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(this.url + this.userLimit);
   }
 
   addUserSrvc(userItem: IUser) {
     return this.http.post(this.url, userItem);
   }
 
-  removeUserSrvc(id:string) {
-    return this.http.delete(`${this.url}/${id}`);
+  removeUserSrvc(id: string) {
+    return this.http.delete(`${this.url}${id}`);
+  }
+
+  updateUserSrvc(userItem: IUser) {
+    return this.http.put(`${this.url}${1}`, userItem);
   }
 
 }
